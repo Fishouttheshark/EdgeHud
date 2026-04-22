@@ -1327,7 +1327,7 @@ textarea { height: 120px; resize: none; }
   <a class="nav-brand" href="#">
     <img src="logo-full.png" alt="EdgeHUD">
   </a>
-  <a class="nav-cta" href="#contact" onclick="gtag('event','cta_click',{location:'navbar'})">Get in Touch</a>
+  <a class="nav-cta" href="#contact">Get in Touch</a>
 </nav>
 
 <!-- HERO -->
@@ -1543,7 +1543,7 @@ textarea { height: 120px; resize: none; }
 
 <div id="cookieBanner" class="cookie-banner">
   <p>
-    This website uses essential cookies and Google Analytics to analyze traffic and improve your experience. Analytics is only used after your consent.
+    This website uses only essential cookies required for basic functionality. No tracking or analytics cookies are used.
   </p>
   <button onclick="dismissCookie()">Got it</button>
 </div>
@@ -1633,10 +1633,6 @@ textarea { height: 120px; resize: none; }
         });
 
         if (response.ok) {
-          gtag('event', 'contact_form_submit', {
-            event_category: 'engagement',
-            event_label: 'Contact Form'
-          });
           formStatus.style.color = '#00e0ff';
           formStatus.style.textShadow = '0 0 8px rgba(0,224,255,0.6)';
           formStatus.style.opacity = '0';
@@ -2003,28 +1999,12 @@ function switchPopup(type, btn) {
   setTimeout(() => { img.src = popupSrcs[type]; img.style.opacity = '1'; }, 220);
 }
 
-function loadAnalytics() {
-  if (window.gaLoaded) return;
-  window.gaLoaded = true;
-  const script = document.createElement('script');
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-PQ1KX2Z8D5';
-  script.async = true;
-  document.head.appendChild(script);
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', 'G-PQ1KX2Z8D5');
-}
-
 if (localStorage.getItem('cookieOk')) {
   document.getElementById('cookieBanner').style.display = 'none';
-  loadAnalytics();
 }
 function dismissCookie() {
   localStorage.setItem('cookieOk', '1');
   document.getElementById('cookieBanner').style.display = 'none';
-  loadAnalytics();
 }
 
 const showcase = document.querySelector('.popup-showcase');
