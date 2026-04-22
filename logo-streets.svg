@@ -1,0 +1,22 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="streetsGrad" x1="0" y1="0" x2="240" y2="240">
+      <stop offset="0%" stop-color="#3a86ff"/>
+      <stop offset="100%" stop-color="#9d4edd"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="100" fill="none" stroke="url(#streetsGrad)" stroke-width="2"/>
+  <line x1="70" y1="80" x2="170" y2="80" stroke="url(#streetsGrad)" stroke-width="4"/>
+  <circle cx="75" cy="80" r="8" fill="url(#streetsGrad)"/>
+  <circle cx="120" cy="80" r="8" fill="url(#streetsGrad)"/>
+  <circle cx="165" cy="80" r="8" fill="url(#streetsGrad)"/>
+  <line x1="70" y1="120" x2="170" y2="120" stroke="url(#streetsGrad)" stroke-width="4" opacity="0.7"/>
+  <circle cx="75" cy="120" r="8" fill="url(#streetsGrad)" opacity="0.7"/>
+  <circle cx="120" cy="120" r="8" fill="url(#streetsGrad)" opacity="0.7"/>
+  <circle cx="165" cy="120" r="8" fill="url(#streetsGrad)" opacity="0.7"/>
+  <line x1="70" y1="160" x2="170" y2="160" stroke="url(#streetsGrad)" stroke-width="4" opacity="0.5"/>
+  <circle cx="75" cy="160" r="8" fill="url(#streetsGrad)" opacity="0.5"/>
+  <circle cx="120" cy="160" r="8" fill="url(#streetsGrad)" opacity="0.5"/>
+  <circle cx="165" cy="160" r="8" fill="url(#streetsGrad)" opacity="0.5"/>
+  <text x="120" y="200" font-family="Inter" font-size="16" font-weight="700" fill="url(#streetsGrad)" text-anchor="middle">STREETS</text>
+</svg>

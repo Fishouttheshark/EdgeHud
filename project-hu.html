@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heads-Up Poker HUD - EdgeHUD | DriveHUD 2 &amp; 3</title>
+<meta name="description" content="Custom Heads-Up poker HUDs designed for DriveHUD 2 and DriveHUD 3. Purpose-built popup systems for HU cash game play with full preflop and postflop stat coverage.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EdgeHUD">
+<meta property="og:title" content="Heads-Up Poker HUD - EdgeHUD">
+<meta property="og:description" content="Custom Heads-Up poker HUDs designed for DriveHUD 2 and DriveHUD 3. Purpose-built popup systems for HU cash game play.">
+<meta property="og:url" content="https://edgehud.com/project-hu.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Heads-Up Poker HUD - EdgeHUD">
+<meta name="twitter:description" content="Custom Heads-Up poker HUDs for DriveHUD 2 and DriveHUD 3 with full popup systems.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+.page-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 6% 100px;
+}
+
+.hu-pro {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+/* FEATURED */
+.featured-hud {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1e293b;
+  margin-bottom: 60px;
+}
+
+.featured-left {
+  text-align: left;
+}
+
+.featured-left h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.featured-desc {
+  color: #94a3b8;
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.featured-note {
+  color: #3b82f6;
+  font-size: 14px;
+}
+
+/* VIDEO */
+.featured-right iframe {
+  width: 100%;
+  height: 320px;
+  border-radius: 16px;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.9),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* HUD TABS */
+.hud-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.hud-tabs button {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid #1e293b;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.hud-tabs button:hover { color: white; border-color: #3b82f6; }
+
+.hud-tabs .active {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 8px 24px rgba(59,130,246,0.35);
+}
+
+/* HUD CARD */
+.hud-tabs button {
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  color: #94a3b8;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.hud-tabs button:hover { color: white; }
+
+.hud-tabs .active {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-color: transparent;
+  color: white;
+}
+
+.hu-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1e293b;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  text-align: left;
+}
+
+.hu-card .hud-image img {
+  width: 100%;
+  border-radius: 16px;
+  image-rendering: crisp-edges;
+}
+
+.hu-card .info h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.hu-card .info p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.hu-card .features { margin-bottom: 25px; }
+
+.hu-card .features div {
+  margin-bottom: 10px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.hu-card .video iframe {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  .hu-card { grid-template-columns: 1fr; }
+  .hu-card .video iframe { height: 180px; }
+}
+
+/* DIVIDER */
+.divider {
+  margin: 60px auto;
+  width: 60%;
+  height: 1px;
+  background: #1e293b;
+}
+
+/* BETTING */
+.sub-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.bet-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.bet-tabs button {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #1e293b;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.bet-tabs button:hover { color: white; border-color: #22c55e; }
+
+.bet-tabs .active {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 8px 24px rgba(34,197,94,0.3);
+}
+
+.bet-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.bet-preview img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 14px;
+  padding: 10px;
+  background: #0b0f1a;
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  transform: none !important;
+  transition: opacity .2s;
+}
+
+/* CTA */
+.page-cta {
+  margin-top: 72px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
+  border: 1px solid rgba(59,130,246,0.12);
+  border-radius: 18px;
+  padding: 44px 40px;
+  text-align: center;
+}
+
+.page-cta h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; color: white; }
+.page-cta p { color: #64748b; font-size: 14px; margin-bottom: 22px; }
+
+.cta-btn {
+  display: inline-block;
+  padding: 13px 32px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .25s;
+  box-shadow: 0 0 28px rgba(59,130,246,0.28);
+}
+
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 44px rgba(59,130,246,0.48); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .featured-hud {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .featured-left { text-align: center; }
+  .hud-tabs, .bet-tabs { flex-wrap: wrap; }
+  .featured-right iframe { height: 220px; }
+  .page-cta { padding: 32px 20px; }
+}
+@media (max-width: 640px) {
+  .page-wrap { padding: 80px 4% 60px; }
+  .hud-tabs button, .bet-tabs button { padding: 7px 12px; font-size: 12px; }
+  .page-cta { padding: 26px 16px; }
+  .page-cta h2 { font-size: clamp(20px, 5vw, 28px); }
+  .hu-card { gap: 16px; }
+}
+@media (max-width: 480px) {
+  .page-wrap { padding: 76px 4% 50px; }
+  .hud-tabs { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+  .hud-tabs button { flex-shrink: 0; white-space: nowrap; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="viewer" id="viewer" onclick="closeViewer()">
+  <img id="viewerImg" alt="">
+</div>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img src="logo-full.png" alt="EdgeHUD">
+  </a>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </a>
+    <a class="nav-cta" href="index.html#contact">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <section class="hu-pro">
+
+    <h2 class="title">Heads-Up HUDs</h2>
+    <p class="subtitle">Advanced HUD systems built for Heads-Up specialists</p>
+
+    <!-- MAIN HUD -->
+    <div class="hud-tabs">
+      <button class="active" onclick="loadRangeSniper(this)">RangeSniper</button>
+      <button onclick="loadHUD('elite.png','Elite HUD',this)">Elite HUD</button>
+      <button onclick="loadHUD('predator.png','Predator HUD',this)">Predator HUD</button>
+    </div>
+
+    <div class="hu-card" id="huContent">
+      <div class="hud-image">
+        <img src="hud1.jpg" alt="RangeSniper HUD">
+      </div>
+      <div class="info">
+        <h3>🎯 RangeSniper HUD</h3>
+        <p>Range-based decision making HUD with advanced exploit strategies and real-time population reads.</p>
+        <div class="features">
+          <div>✔ Complete preflop &amp; postflop coverage</div>
+          <div>✔ Betting size popup integration</div>
+          <div>✔ Optimized for fast decisions</div>
+          <div>✔ Built for winning HU players</div>
+        </div>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/4wKKfZZ9EQA" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- BETTING -->
+    <h3 class="sub-title">Betting Size Popups</h3>
+
+    <div class="bet-tabs">
+      <button class="active" onclick="switchBet('bet1.png', this)">33%</button>
+      <button onclick="switchBet('bet2.png', this)">50%</button>
+      <button onclick="switchBet('bet3.png', this)">75%</button>
+      <button onclick="switchBet('bet4.png', this)">Overbet</button>
+    </div>
+
+    <div class="bet-preview">
+      <img id="betImage" src="bet1.png" alt="Betting Popup Preview">
+    </div>
+
+  </section>
+
+  <div class="page-cta">
+    <h2>Want a HUD like this?</h2>
+    <p>All HUDs are built to your exact specs — get in touch and I'll put together a custom quote.</p>
+    <a class="cta-btn" href="index.html#contact">Request a Custom HUD</a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div>© 2026 EdgeHUD. All rights reserved.</div>
+    <div>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="cookies.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function openViewer(src) {
+  document.getElementById('viewer').style.display = 'flex';
+  document.getElementById('viewerImg').src = src;
+}
+function closeViewer() {
+  document.getElementById('viewer').style.display = 'none';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeViewer(); });
+
+function loadRangeSniper(btn) {
+  document.getElementById('huContent').innerHTML = `
+    <div class="hud-image"><img src="hud1.jpg" alt="RangeSniper HUD"></div>
+    <div class="info">
+      <h3>🎯 RangeSniper HUD</h3>
+      <p>Range-based decision making HUD with advanced exploit strategies and real-time population reads.</p>
+      <div class="features">
+        <div>✔ Complete preflop &amp; postflop coverage</div>
+        <div>✔ Betting size popup integration</div>
+        <div>✔ Optimized for fast decisions</div>
+        <div>✔ Built for winning HU players</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/4wKKfZZ9EQA" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>`;
+  huSetActive(btn);
+}
+
+function loadHUD(img, name, btn) {
+  document.getElementById('huContent').innerHTML = `
+    <div class="hud-image"><img src="${img}" alt="${name}"></div>
+    <div class="info">
+      <h3>${name}</h3>
+      <p>Advanced Heads-Up HUD system with optimized stat structure and clean layout.</p>
+      <div class="features">
+        <div>✔ Clean structure</div>
+        <div>✔ Easy to read</div>
+        <div>✔ Fast adjustments</div>
+      </div>
+    </div>`;
+  huSetActive(btn);
+}
+
+function huSetActive(btn) {
+  document.querySelectorAll('.hud-tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function switchBet(src, btn) {
+  const img = document.getElementById('betImage');
+  img.style.opacity = '0';
+  setTimeout(() => { img.src = src; img.style.opacity = '1'; }, 120);
+  document.querySelectorAll('.bet-tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

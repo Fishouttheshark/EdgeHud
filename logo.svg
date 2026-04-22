@@ -1,0 +1,14 @@
+<svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="chevGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3a86ff"/>
+      <stop offset="100%" stop-color="#9d4edd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Small diamond - upper left, dark navy -->
+  <polygon points="3,8  9,2  15,8  9,14" fill="#1e3a8a"/>
+
+  <!-- Large rightward chevron (arrow with notch) - blue to purple -->
+  <polygon points="8,16  26,4  42,22  26,40  8,28  17,22" fill="url(#chevGrad)"/>
+</svg>

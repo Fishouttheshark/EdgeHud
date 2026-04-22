@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cash Game Poker HUD - EdgeHUD | DriveHUD 2 &amp; 3</title>
+<meta name="description" content="Custom cash game poker HUDs for DriveHUD 2 and DriveHUD 3. Comprehensive popup systems covering every postflop decision with OOP, IP, 3-bet, and multi-way spots.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EdgeHUD">
+<meta property="og:title" content="Cash Game Poker HUD - EdgeHUD">
+<meta property="og:description" content="Custom cash game poker HUDs for DriveHUD 2 and DriveHUD 3. Full popup systems covering every postflop decision.">
+<meta property="og:url" content="https://edgehud.com/project-cash.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cash Game Poker HUD - EdgeHUD">
+<meta name="twitter:description" content="Custom cash game poker HUDs for DriveHUD 2 and DriveHUD 3 with comprehensive popup systems.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+.page-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 6% 100px;
+}
+
+.back-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.03);
+  transition: .2s;
+}
+
+.back-btn:hover { color: white; border-color: rgba(255,255,255,0.15); }
+
+.project-header {
+  margin-bottom: 40px;
+}
+
+.project-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(58,134,255,0.1);
+  border: 1px solid rgba(58,134,255,0.2);
+  padding: 4px 14px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.project-header h1 {
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.project-header p {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* Main HUD screenshot */
+.main-screenshot {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(58,134,255,0.06), rgba(157,78,221,0.06));
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+.main-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.placeholder-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.12);
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Popups section */
+.popups-section h2 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.popups-section .subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.popups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.popup-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.popup-card:hover {
+  border-color: rgba(58,134,255,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(58,134,255,0.1);
+}
+
+.popup-card img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: .3s;
+}
+
+.popup-card:hover img { transform: scale(1.03); }
+
+.popup-card-label {
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--purple);
+  background: rgba(157,78,221,0.12);
+  border: 1px solid rgba(157,78,221,0.25);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+/* Placeholder popup card */
+.popup-card-placeholder {
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  aspect-ratio: 16/10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.1);
+  font-size: 12px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+/* POPUP SECTION */
+.popup-section {
+  max-width: 1200px;
+  margin: 64px 0;
+}
+
+.popup-section h2 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.popup-container {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+}
+
+.popup-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.popup-menu button {
+  padding: 9px 12px;
+  text-align: left;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  transition: .2s;
+}
+
+.popup-menu button:hover { color: white; border-color: rgba(255,255,255,0.15); }
+
+.popup-menu button.active {
+  background: linear-gradient(90deg, #3a86ff, #9d4edd);
+  border-color: transparent;
+  color: white;
+}
+
+.popup-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 20px;
+  background: radial-gradient(circle at center, rgba(59,130,246,0.12), transparent 70%);
+  border: 1px solid rgba(59,130,246,0.15);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.02),
+    0 20px 60px rgba(0,0,0,0.6),
+    inset 0 0 40px rgba(59,130,246,0.05);
+  overflow: auto;
+}
+
+.popup-preview img {
+  max-height: 80vh;
+  max-width: 100%;
+  width: auto;
+  border-radius: 12px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(0,0,0,0.6);
+  filter: contrast(1.08) saturate(1.05);
+  cursor: zoom-in;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  will-change: transform, opacity;
+}
+
+.popup-preview img.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.popup-preview img.zoom {
+  max-height: none;
+  width: 1400px;
+  cursor: zoom-out;
+}
+
+@media (max-width: 768px) {
+  .popup-container { grid-template-columns: 1fr; }
+  .popup-menu { flex-direction: row; flex-wrap: wrap; }
+  .popup-menu button { flex: 1 1 auto; text-align: center; }
+  .popup-preview img { transition: opacity 0.2s ease; transform: none !important; }
+}
+
+/* CTA */
+.page-cta {
+  margin-top: 80px;
+  background: linear-gradient(135deg, rgba(58,134,255,0.06), rgba(157,78,221,0.06));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+}
+
+.page-cta h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+.page-cta p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+
+.cta-btn {
+  display: inline-block;
+  padding: 13px 32px;
+  border-radius: 10px;
+  background: var(--grad);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .25s;
+  box-shadow: 0 0 28px rgba(58,134,255,0.28);
+}
+
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 42px rgba(58,134,255,0.46); }
+
+@media (max-width: 768px) {
+  .page-wrap { padding: 88px 5% 72px; }
+  .popups-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .page-cta { padding: 32px 24px; }
+}
+@media (max-width: 640px) {
+  .page-wrap { padding: 80px 4% 60px; }
+  .popups-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .page-cta { padding: 26px 18px; }
+  .page-cta h2 { font-size: clamp(20px, 5vw, 28px); }
+}
+@media (max-width: 480px) {
+  .page-wrap { padding: 76px 4% 50px; }
+  .popups-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="viewer" id="viewer" onclick="closeViewer()">
+  <img id="viewerImg" alt="">
+</div>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img src="logo-full.png" alt="EdgeHUD">
+  </a>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to projects
+    </a>
+    <a class="nav-cta" href="index.html#contact">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="project-header">
+    <div class="project-tag">Cash Games</div>
+    <h1>Cash Games HUD</h1>
+    <p>A full cash game HUD with positional popup logic built for DriveHUD 2 and DriveHUD 3. Covers all major spots - IP/OOP PFR, callers, 3-bet pots, multiway, donk bets, limp spots, and river aggression.</p>
+  </div>
+
+  <!-- Main HUD screenshot -->
+  <div class="main-screenshot">
+    <div class="placeholder-main">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      Main HUD screenshot - add as hud-omaha-main.jpg
+    </div>
+  </div>
+
+  <!-- Popup screens -->
+  <section class="popup-section">
+
+    <h2>Popup Screens</h2>
+
+    <div class="popup-container">
+
+      <div class="popup-menu">
+        <button class="active" onclick="showPopupA('a1', this)">OOP PFR</button>
+        <button onclick="showPopupA('a2', this)">IP PFR</button>
+        <button onclick="showPopupA('a3', this)">OOP Caller</button>
+        <button onclick="showPopupA('a4', this)">IP Caller</button>
+        <button onclick="showPopupA('a5', this)">3-Bet Aggressor</button>
+        <button onclick="showPopupA('a6', this)">3-Bet Caller</button>
+        <button onclick="showPopupA('a7', this)">Donk Bets</button>
+        <button onclick="showPopupA('a8', this)">Multiway</button>
+        <button onclick="showPopupA('a9', this)">Limp Stats</button>
+        <button onclick="showPopupA('a10', this)">River Bets</button>
+      </div>
+
+      <div class="popup-preview">
+        <img id="popupImageA" src="popups/omaha/oop-pfr.jpg" alt="Popup Preview">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 3-Bet & Aggression Interactive Showcase -->
+  <section class="popup-section">
+
+    <h2>3-Bet &amp; Aggression Pack</h2>
+
+    <div class="popup-container">
+
+      <div class="popup-menu">
+        <button class="active" onclick="showPopup('img1', this)">3Bet Fold</button>
+        <button onclick="showPopup('img2', this)">3BP IP</button>
+        <button onclick="showPopup('img3', this)">3BP OOP</button>
+        <button onclick="showPopup('img4', this)">Bet / Fold</button>
+        <button onclick="showPopup('img5', this)">BTN vs BB</button>
+        <button onclick="showPopup('img6', this)">BvB Texture</button>
+        <button onclick="showPopup('img7', this)">Caller IP</button>
+        <button onclick="showPopup('img8', this)">Caller OOP</button>
+        <button onclick="showPopup('img9', this)">Cold Call</button>
+        <button onclick="showPopup('img10', this)">Donk</button>
+        <button onclick="showPopup('img11', this)">IP vs EP</button>
+        <button onclick="showPopup('img12', this)">PFR IP</button>
+        <button onclick="showPopup('img13', this)">PFR OOP</button>
+        <button onclick="showPopup('img14', this)">PFR + 3Bet</button>
+        <button onclick="showPopup('img15', this)">SB vs BB</button>
+        <button onclick="showPopup('img16', this)">Showdown</button>
+      </div>
+
+      <div class="popup-preview">
+        <img id="popupImage" src="popups/pack2/3b-fold.jpg" alt="Popup Preview">
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="page-cta">
+    <h2>Want a HUD like this?</h2>
+    <p>All HUDs are built to your exact specs. Get in touch and I'll put together a custom quote.</p>
+    <a class="cta-btn" href="index.html#contact">Request a Custom HUD</a>
+  </div>
+
+</div>
+
+<footer>
+  EdgeHUD &nbsp;·&nbsp; Custom DriveHUD Design &nbsp;·&nbsp; Not affiliated with DriveHUD&reg;
+</footer>
+
+<script>
+function openViewer(src) {
+  document.getElementById('viewer').style.display = 'flex';
+  document.getElementById('viewerImg').src = src;
+}
+function closeViewer() {
+  document.getElementById('viewer').style.display = 'none';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeViewer(); });
+
+const imagesA = {
+  a1:  'popups/omaha/oop-pfr.jpg',
+  a2:  'popups/omaha/ip-pfr.jpg',
+  a3:  'popups/omaha/oop-caller.jpg',
+  a4:  'popups/omaha/ip-caller.jpg',
+  a5:  'popups/omaha/3b-aggressor.jpg',
+  a6:  'popups/omaha/3b-caller.jpg',
+  a7:  'popups/omaha/donk.jpg',
+  a8:  'popups/omaha/mw.jpg',
+  a9:  'popups/omaha/limp.jpg',
+  a10: 'popups/omaha/river-bets.jpg'
+};
+
+function showPopupA(key, btn) {
+  const img = document.getElementById('popupImageA');
+  img.classList.add('fade-out');
+  setTimeout(() => {
+    img.src = imagesA[key];
+    img.classList.remove('fade-out', 'zoom');
+    void img.offsetWidth;
+    img.style.opacity = '1';
+    img.style.transform = 'translateY(0)';
+  }, 150);
+  btn.closest('.popup-menu').querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+document.getElementById('popupImageA').onclick = function() {
+  this.classList.toggle('zoom');
+};
+
+const images = {
+  img1:  'popups/pack2/3b-fold.jpg',
+  img2:  'popups/pack2/3bp-ip.jpg',
+  img3:  'popups/pack2/3bp-oop.jpg',
+  img4:  'popups/pack2/bet-fold.jpg',
+  img5:  'popups/pack2/btn-vs-bb.jpg',
+  img6:  'popups/pack2/bvb-texture.jpg',
+  img7:  'popups/pack2/caller-ip.jpg',
+  img8:  'popups/pack2/caller-oop.jpg',
+  img9:  'popups/pack2/cold-call.jpg',
+  img10: 'popups/pack2/donk.jpg',
+  img11: 'popups/pack2/ip-vs-ep.jpg',
+  img12: 'popups/pack2/pfr-ip.jpg',
+  img13: 'popups/pack2/pfr-oop.jpg',
+  img14: 'popups/pack2/pfr-3bet.jpg',
+  img15: 'popups/pack2/sb-vs-bb.jpg',
+  img16: 'popups/pack2/showdown.jpg'
+};
+
+function showPopup(key, btn) {
+  const img = document.getElementById('popupImage');
+
+  img.classList.add('fade-out');
+
+  setTimeout(() => {
+    img.src = images[key];
+    img.classList.remove('fade-out', 'zoom');
+    void img.offsetWidth;
+    img.style.opacity = '1';
+    img.style.transform = 'translateY(0)';
+  }, 150);
+
+  document.querySelectorAll('.popup-menu button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+document.getElementById('popupImage').onclick = function() {
+  this.classList.toggle('zoom');
+};
+</script>
+
+</body>
+</html>

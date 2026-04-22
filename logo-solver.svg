@@ -1,0 +1,17 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="solverGrad" x1="0" y1="0" x2="240" y2="240">
+      <stop offset="0%" stop-color="#3a86ff"/>
+      <stop offset="100%" stop-color="#9d4edd"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="100" fill="none" stroke="url(#solverGrad)" stroke-width="2"/>
+  <path d="M60 80 Q120 40 180 80 Q180 140 120 180 Q60 140 60 80" fill="none" stroke="url(#solverGrad)" stroke-width="3"/>
+  <circle cx="75" cy="110" r="6" fill="url(#solverGrad)"/>
+  <circle cx="120" cy="155" r="6" fill="url(#solverGrad)"/>
+  <circle cx="165" cy="110" r="6" fill="url(#solverGrad)"/>
+  <circle cx="120" cy="90" r="8" fill="url(#solverGrad)"/>
+  <path d="M75 110 L120 90 L165 110" fill="none" stroke="url(#solverGrad)" stroke-width="2"/>
+  <path d="M120 90 L120 155" fill="none" stroke="url(#solverGrad)" stroke-width="2"/>
+  <text x="120" y="200" font-family="Inter" font-size="16" font-weight="700" fill="url(#solverGrad)" text-anchor="middle">SOLVER</text>
+</svg>

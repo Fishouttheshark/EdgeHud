@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /terms.html
+Disallow: /privacy.html
+Disallow: /cookies.html
+
+Sitemap: https://edgehud.com/sitemap.xml

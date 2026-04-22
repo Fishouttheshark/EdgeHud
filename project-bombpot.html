@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bomb Pot Poker HUD - EdgeHUD | DriveHUD 2 &amp; 3</title>
+<meta name="description" content="Custom Bomb Pot poker HUDs for DriveHUD 2 and DriveHUD 3. Includes Bombpot HU and Bombpot HU SPR variants with dedicated popup systems built specifically for bomb pot play.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EdgeHUD">
+<meta property="og:title" content="Bomb Pot Poker HUD - EdgeHUD">
+<meta property="og:description" content="Custom Bomb Pot poker HUDs for DriveHUD 2 and DriveHUD 3. Bombpot HU and Bombpot HU SPR variants with dedicated popup systems.">
+<meta property="og:url" content="https://edgehud.com/project-bombpot.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bomb Pot Poker HUD - EdgeHUD">
+<meta name="twitter:description" content="Custom Bomb Pot poker HUDs for DriveHUD 2 and DriveHUD 3 with dedicated popup systems.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+.page-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 6% 100px;
+}
+
+.project-header { margin-bottom: 40px; }
+
+.project-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(58,134,255,0.1);
+  border: 1px solid rgba(58,134,255,0.2);
+  padding: 4px 14px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.project-header h1 {
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.project-header p {
+  color: var(--muted);
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.main-screenshot {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(58,134,255,0.06), rgba(157,78,221,0.06));
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+.main-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.placeholder-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.12);
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.popups-section h2 {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.popups-section .subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.popups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.popup-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.popup-card:hover {
+  border-color: rgba(58,134,255,0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(58,134,255,0.1);
+}
+
+.popup-card img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: .3s;
+}
+
+.popup-card:hover img { transform: scale(1.03); }
+
+.popup-card-label {
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-card-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--blue);
+  background: rgba(58,134,255,0.12);
+  border: 1px solid rgba(58,134,255,0.22);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.popup-placeholder {
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+  aspect-ratio: 16/10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.08);
+  font-size: 11px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.page-cta {
+  margin-top: 80px;
+  background: linear-gradient(135deg, rgba(58,134,255,0.06), rgba(157,78,221,0.06));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+}
+
+.page-cta h2 { font-size: 24px; font-weight: 800; margin-bottom: 10px; }
+.page-cta p { color: var(--muted); font-size: 15px; margin-bottom: 24px; }
+
+.cta-btn {
+  display: inline-block;
+  padding: 13px 32px;
+  border-radius: 10px;
+  background: var(--grad);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .25s;
+  box-shadow: 0 0 28px rgba(58,134,255,0.28);
+}
+
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 42px rgba(58,134,255,0.46); }
+
+@media (max-width: 768px) {
+  .page-wrap { padding: 88px 5% 72px; }
+  .popups-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .page-cta { padding: 32px 24px; }
+}
+@media (max-width: 640px) {
+  .page-wrap { padding: 80px 4% 60px; }
+  .popups-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .page-cta { padding: 26px 18px; }
+  .page-cta h2 { font-size: clamp(20px, 5vw, 28px); }
+}
+@media (max-width: 480px) {
+  .page-wrap { padding: 76px 4% 50px; }
+  .popups-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="viewer" id="viewer" onclick="closeViewer()">
+  <img id="viewerImg" alt="">
+</div>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <img src="logo-full.png" alt="EdgeHUD">
+  </a>
+  <div class="nav-right">
+    <a class="nav-back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </a>
+    <a class="nav-cta" href="index.html#contact">Get in Touch</a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="project-header">
+    <div class="project-tag">Bomb Pot</div>
+    <h1>Bomb Pot HUD</h1>
+    <p>A dedicated Bomb Pot HUD with full positional popup logic built for DriveHUD 2 and DriveHUD 3. Tailored for the unique preflop and postflop dynamics of bomb pot games.</p>
+  </div>
+
+  <div class="main-screenshot">
+    <div class="placeholder-main">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+      Main HUD screenshot - add as hud-bombpot-main.jpg
+    </div>
+  </div>
+
+  <div class="popups-section">
+    <h2>Popup Screens</h2>
+    <p class="subtitle">13 popups covering every Bomb Pot spot - click any to view full size</p>
+
+    <div class="popups-grid">
+
+      <!-- Add your popup images here - replace these placeholders -->
+      <!-- Example: <div class="popup-card" onclick="openViewer('popups/bombpot/your-image.jpg')">
+             <img src="popups/bombpot/your-image.jpg" alt="Popup Name">
+             <div class="popup-card-label">Popup Name <span class="popup-card-tag">Tag</span></div>
+           </div> -->
+
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 1
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 2
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 3
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 4
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 5
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 6
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 7
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 8
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 9
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 10
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 11
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 12
+      </div>
+      <div class="popup-placeholder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+        Popup 13
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-cta">
+    <h2>Want a HUD like this?</h2>
+    <p>All HUDs are built to your exact specs. Get in touch and I'll put together a custom quote.</p>
+    <a class="cta-btn" href="index.html#contact">Request a Custom HUD</a>
+  </div>
+
+</div>
+
+<footer>
+  EdgeHUD &nbsp;·&nbsp; Custom DriveHUD Design &nbsp;·&nbsp; Not affiliated with DriveHUD&reg;
+</footer>
+
+<script>
+function openViewer(src) {
+  document.getElementById('viewer').style.display = 'flex';
+  document.getElementById('viewerImg').src = src;
+}
+function closeViewer() {
+  document.getElementById('viewer').style.display = 'none';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeViewer(); });
+</script>
+
+</body>
+</html>

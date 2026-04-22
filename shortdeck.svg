@@ -1,0 +1,36 @@
+<svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3a86ff"/>
+      <stop offset="100%" stop-color="#9d4edd"/>
+    </linearGradient>
+    <linearGradient id="sg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Back card (rotated left) -->
+  <rect x="22" y="30" width="88" height="116" rx="12" fill="url(#sg2)" opacity="0.75" transform="rotate(-12 66 88)"/>
+
+  <!-- Front card -->
+  <rect x="44" y="24" width="88" height="116" rx="12" fill="url(#sg)"/>
+
+  <!-- Card shine -->
+  <rect x="54" y="34" width="36" height="18" rx="6" fill="white" opacity="0.12"/>
+
+  <!-- Spade in center of front card -->
+  <path d="
+    M88 68
+    C88 68 70 79 70 88
+    C70 93 74 96 79 94
+    C77 99 74 102 74 102
+    H102
+    C102 102 99 99 97 94
+    C102 96 106 93 106 88
+    C106 79 88 68 88 68 Z
+  " fill="white" opacity="0.9"/>
+
+  <!-- "6+" label top-left of front card -->
+  <text x="54" y="52" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" fill="white" opacity="0.9">6+</text>
+</svg>

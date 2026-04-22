@@ -1,0 +1,19 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sprGrad" x1="0" y1="0" x2="240" y2="240">
+      <stop offset="0%" stop-color="#3a86ff"/>
+      <stop offset="100%" stop-color="#9d4edd"/>
+    </linearGradient>
+  </defs>
+  <circle cx="120" cy="120" r="100" fill="none" stroke="url(#sprGrad)" stroke-width="2"/>
+  <rect x="80" y="80" width="80" height="80" stroke="url(#sprGrad)" stroke-width="3" fill="none" rx="4"/>
+  <circle cx="120" cy="60" r="8" fill="url(#sprGrad)"/>
+  <circle cx="180" cy="120" r="8" fill="url(#sprGrad)"/>
+  <circle cx="120" cy="180" r="8" fill="url(#sprGrad)"/>
+  <circle cx="60" cy="120" r="8" fill="url(#sprGrad)"/>
+  <line x1="120" y1="60" x2="120" y2="80" stroke="url(#sprGrad)" stroke-width="2"/>
+  <line x1="180" y1="120" x2="160" y2="120" stroke="url(#sprGrad)" stroke-width="2"/>
+  <line x1="120" y1="180" x2="120" y2="160" stroke="url(#sprGrad)" stroke-width="2"/>
+  <line x1="60" y1="120" x2="80" y2="120" stroke="url(#sprGrad)" stroke-width="2"/>
+  <text x="120" y="125" font-family="Inter" font-size="18" font-weight="700" fill="url(#sprGrad)" text-anchor="middle" dominant-baseline="middle">SPR</text>
+</svg>
