@@ -1643,6 +1643,10 @@ textarea { height: 120px; resize: none; }
         });
 
         if (response.ok) {
+          gtag('event', 'contact_form_submit', {
+            event_category: 'engagement',
+            event_label: 'Contact Form'
+          });
           formStatus.style.color = '#00e0ff';
           formStatus.style.textShadow = '0 0 8px rgba(0,224,255,0.6)';
           formStatus.style.opacity = '0';
