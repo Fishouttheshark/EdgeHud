@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PQ1KX2Z8D5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-PQ1KX2Z8D5');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="logo-e-transparent.png">
@@ -1551,8 +1543,7 @@ textarea { height: 120px; resize: none; }
 
 <div id="cookieBanner" class="cookie-banner">
   <p>
-    This website uses essential cookies and anonymous analytics to improve user experience.
-    By continuing to use this website, you agree to this.
+    This website uses essential cookies and Google Analytics to analyze traffic and improve your experience. Analytics is only used after your consent.
   </p>
   <button onclick="dismissCookie()">Got it</button>
 </div>
@@ -2012,12 +2003,28 @@ function switchPopup(type, btn) {
   setTimeout(() => { img.src = popupSrcs[type]; img.style.opacity = '1'; }, 220);
 }
 
+function loadAnalytics() {
+  if (window.gaLoaded) return;
+  window.gaLoaded = true;
+  const script = document.createElement('script');
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-PQ1KX2Z8D5';
+  script.async = true;
+  document.head.appendChild(script);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-PQ1KX2Z8D5');
+}
+
 if (localStorage.getItem('cookieOk')) {
   document.getElementById('cookieBanner').style.display = 'none';
+  loadAnalytics();
 }
 function dismissCookie() {
   localStorage.setItem('cookieOk', '1');
   document.getElementById('cookieBanner').style.display = 'none';
+  loadAnalytics();
 }
 
 const showcase = document.querySelector('.popup-showcase');
