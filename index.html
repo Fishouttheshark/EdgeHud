@@ -98,6 +98,14 @@
   font-size: 14px;
   backdrop-filter: blur(12px);
   text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.hud-info:hover {
+  border-color: rgba(200,40,40,0.6);
+  box-shadow: 0 0 32px rgba(180,20,20,0.3), inset 0 0 16px rgba(180,20,20,0.06);
 }
 
 .hud-info-logo {
@@ -1382,13 +1390,13 @@ textarea::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
   <div class="hero-eyebrow"><span></span>Custom HUD Design<span></span></div>
   <h1>Poker HUDs built<br><em>for your game</em></h1>
   <p class="hero-sub">Professional HUD design for serious online players. Clean layouts, advanced stat structures, and full popup systems.</p>
-  <div class="hud-info">
+  <a class="hud-info" href="https://drivehud.com/" target="_blank" rel="noopener noreferrer">
     <img class="hud-info-logo" src="drivehud2-logo.png" alt="DriveHUD 2">
     <div class="hud-info-text">
       <span class="hud-info-title">Built for DriveHUD 2</span>
       <span class="hud-info-sub">These HUDs work only with DriveHUD 2.</span>
     </div>
-  </div>
+  </a>
 </section>
 
 <!-- FORMATS -->
