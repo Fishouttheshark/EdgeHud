@@ -1286,9 +1286,13 @@ textarea::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
   .popup-subrow button { white-space: nowrap; flex-shrink: 0; }
   .popup-switch { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
   .popup-switch button { white-space: nowrap; flex-shrink: 0; }
-  .hud-wrapper { display: none; }
-  #sizingsPreview { display: none !important; }
-  .hu-preview { margin-top: 0; gap: 16px; }
+  .hud-wrapper { max-width: 100%; }
+  .hud-wrapper.elite-active { min-height: unset; height: auto; }
+  .hud-wrapper.combat-active { width: 100%; max-width: 100%; }
+  .hud-wrapper.elite-active img { mix-blend-mode: normal; filter: contrast(1.1) brightness(1.2); }
+  .hud-wrapper.combat-active img { mix-blend-mode: normal; filter: contrast(1.1) brightness(1.15); }
+  .hud-wrapper img { max-height: 320px; width: auto; margin: 0 auto; }
+  .hu-preview { margin-top: 16px; gap: 16px; }
 
   .formats-section { padding: 42px 4% 34px; }
 }
