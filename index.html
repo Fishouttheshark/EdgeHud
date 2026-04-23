@@ -252,7 +252,11 @@ input:focus, textarea:focus, select:focus {
 }
 
 select option { background: #0e1120; color: white; }
-textarea { height: 120px; resize: none; }
+textarea { height: 120px; resize: none; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) transparent; }
+textarea::-webkit-scrollbar { width: 4px; }
+textarea::-webkit-scrollbar-track { background: transparent; }
+textarea::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+textarea::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
 .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
 .submit-btn {
