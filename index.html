@@ -86,14 +86,44 @@
 
 .hud-info {
   margin-top: 30px;
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(58,134,255,0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 22px 12px 14px;
+  border-radius: 16px;
+  background: rgba(10,12,28,0.85);
+  border: 1px solid rgba(200,40,40,0.35);
+  box-shadow: 0 0 24px rgba(180,20,20,0.18), inset 0 0 16px rgba(180,20,20,0.04);
   color: #cbd5f5;
   font-size: 14px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  text-align: left;
+}
+
+.hud-info-logo {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(200,40,40,0.5));
+}
+
+.hud-info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-info-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.hud-info-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
 }
 
 /* FORMATS STRIP */
@@ -1230,7 +1260,10 @@ textarea::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
 @media (max-width: 768px) {
   .hero { padding: 110px 20px 70px; }
   .hero-sub { max-width: 100%; }
-  .hud-info { font-size: 13px; padding: 9px 16px; }
+  .hud-info { font-size: 13px; padding: 10px 16px 10px 12px; gap: 10px; }
+  .hud-info-logo { width: 38px; height: 38px; }
+  .hud-info-title { font-size: 14px; }
+  .hud-info-sub { font-size: 11px; }
 
   .hud-builder-section { padding: 60px 5% 50px; }
   .hud-builder { padding: 22px 16px 18px; }
@@ -1300,7 +1333,10 @@ textarea::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
 /* --- 480px: Small mobile portrait --- */
 @media (max-width: 480px) {
   .hero { padding: 86px 14px 50px; }
-  .hud-info { font-size: 12px; padding: 8px 14px; }
+  .hud-info { font-size: 12px; padding: 9px 14px 9px 10px; gap: 9px; }
+  .hud-info-logo { width: 34px; height: 34px; }
+  .hud-info-title { font-size: 13px; }
+  .hud-info-sub { font-size: 11px; }
 
   .hud-builder-section { padding: 44px 4% 36px; }
   .hud-builder { padding: 14px 10px 14px; }
@@ -1346,7 +1382,13 @@ textarea::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
   <div class="hero-eyebrow"><span></span>Custom HUD Design<span></span></div>
   <h1>Poker HUDs built<br><em>for your game</em></h1>
   <p class="hero-sub">Professional HUD design for serious online players. Clean layouts, advanced stat structures, and full popup systems.</p>
-  <div class="hud-info">Built for DriveHUD 2 &bull; Ready for DriveHUD 3</div>
+  <div class="hud-info">
+    <img class="hud-info-logo" src="drivehud2-logo.png" alt="DriveHUD 2">
+    <div class="hud-info-text">
+      <span class="hud-info-title">Built for DriveHUD 2</span>
+      <span class="hud-info-sub">These HUDs work only with DriveHUD 2.</span>
+    </div>
+  </div>
 </section>
 
 <!-- FORMATS -->
